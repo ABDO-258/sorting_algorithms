@@ -30,22 +30,23 @@ void counting_sort(int *array, size_t size)
 		arr_count[i] = 0;
 	for (k = 0; k < size; k++)
 		arr_count[array[k]]++;
-	for (i = 0; i < (bigger_value + 1); i++)
+	for (i = 1; i < (bigger_value + 1); i++)
 		arr_count[i] += arr_count[i - 1];
+	print_array(arr_count, (bigger_value + 1));
 	arr_sorted = malloc(sizeof(int) * size);
 	if (arr_sorted == NULL)
 	{
 		free(arr_count);
 		return;
 	}
-	for (j = size - 1; j >= 0; j--)
+	for (j = size - 1; j > 0; j--)
 	{
 		arr_sorted[arr_count[array[j]] - 1] = array[j];
 		arr_count[array[j]]--;
 	}
 	for (k = 0; k < size; k++)
 		array[k] = arr_sorted[k];
-	print_array(arr_count, (bigger_value + 1));
+	
 	free(arr_count);
 	free(arr_sorted);
 }
