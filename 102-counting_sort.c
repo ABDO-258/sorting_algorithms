@@ -39,14 +39,14 @@ void counting_sort(int *array, size_t size)
 		free(arr_count);
 		return;
 	}
-	for (j = size - 1; j > 0; j--)
+	for (j = size - 1; j >= 0; j--)
 	{
 		arr_sorted[arr_count[array[j]] - 1] = array[j];
 		arr_count[array[j]]--;
 	}
+	/*print_array(arr_sorted, size);*/
 	for (k = 0; k < size; k++)
 		array[k] = arr_sorted[k];
-	
 	free(arr_count);
 	free(arr_sorted);
 }
